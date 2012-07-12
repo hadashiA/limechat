@@ -350,16 +350,16 @@ static NSString* renderRange(NSString* body, attr_t attr, int start, int len)
             }
             
             if (enabled) {
-                if (isClear(attrBuf, URL_ATTR, r.location, r.length)) {
+                //if (isClear(attrBuf, URL_ATTR, r.location, r.length)) {
                     foundKeyword = YES;
-                    if (highlightWholeLine) {
+                    if (highlightWholeLine || !isClear(attrBuf, URL_ATTR, r.location, r.length)) {
                         setFlag(attrBuf, KEYWORD_ATTR, 0, len);
                         break;
                     }
                     else {
                         setFlag(attrBuf, KEYWORD_ATTR, r.location, r.length);
                     }
-                }
+                //}
             }
             
             start = NSMaxRange(r) + 1;
